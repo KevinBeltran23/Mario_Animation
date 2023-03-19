@@ -1,9 +1,6 @@
 import processing.core.PImage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public final class Sapling extends Plant{
 
@@ -32,7 +29,7 @@ public final class Sapling extends Plant{
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
         this.setHealth(1);
-        if (!this.transformPlant(world, scheduler, imageStore, action)) {
+        if (!this.transformHealthEntity(world, scheduler, imageStore, action)) {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());
         }
 
