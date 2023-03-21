@@ -18,6 +18,13 @@ public final class Tree extends Plant{
             return false;
         }
     }
+
+    public void transformToBanana(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
+        Banana_Tree bananaTree = this.getPosition().createBananaTree(WorldModel.getBananaTreeKey() + "_" + this.getId(), Point.getNumFromRange(1.4, 1.0), Point.getNumFromRange(0.6, 0.05), Point.getIntFromRange(3, 1), imageStore.getImageList(WorldModel.getBananaTreeKey()));
+        this.removeEntity(scheduler, world);
+        bananaTree.addEntity(world);
+    }
+
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
         if (!this.transformHealthEntity(world, scheduler, imageStore, action)) {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());

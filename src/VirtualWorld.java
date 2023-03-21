@@ -63,6 +63,17 @@ public final class VirtualWorld extends PApplet {
         this.view.drawViewport();
     }
 
+    public void mousePressed(){
+        Point pressed = this.mouseToPoint();
+        System.out.println("Monkey Time! " + pressed.x + ", " + pressed.y);
+        for (Entity entity : world.getEntities()){
+            if (entity.getPosition().nearby(pressed) && entity instanceof Tree){
+                ((Tree) entity).transformToBanana(world, this.scheduler, this.imageStore);
+            }
+        }
+    }
+
+    /*
     public void mousePressed() {
         Point pressed = this.mouseToPoint();
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
@@ -106,6 +117,7 @@ public final class VirtualWorld extends PApplet {
             }
         }
     }
+     */
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
 
