@@ -19,8 +19,14 @@ public class Activity implements Action
         if(entity instanceof Sapling) {
             ((Sapling)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }
+        else if(entity instanceof Banana_Sapling) {
+            ((Banana_Sapling)entity).execute(this.world, this.imageStore, eventScheduler, this);
+        }
         else if(entity instanceof Tree){
             ((Tree)entity).execute(this.world, this.imageStore, eventScheduler, this);
+        }
+        else if(entity instanceof Banana_Tree){
+            ((Banana_Tree)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }
         else if(entity instanceof Fairy){
             ((Fairy)entity).execute(this.world, this.imageStore, eventScheduler, this);
@@ -33,6 +39,9 @@ public class Activity implements Action
         }
         else if(entity instanceof Stump){
             throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Stump.class));
+        }
+        else if(entity instanceof Banana_Stump){
+            throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Banana_Stump.class));
         }
         else if(entity instanceof House){
             throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", House.class));

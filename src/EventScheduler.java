@@ -45,7 +45,7 @@ public final class EventScheduler {
     }
 
     public void removePendingEvent(Event event) {
-        List<Event> pending = (List)this.pendingEvents.get(event.getEntity());
+        List<Event> pending = this.pendingEvents.get(event.getEntity());
         if (pending != null) {
             pending.remove(event);
         }
@@ -55,8 +55,8 @@ public final class EventScheduler {
     public void updateOnTime(double time) {
         double stopTime = this.currentTime + time;
 
-        while(!this.eventQueue.isEmpty() && ((Event)this.eventQueue.peek()).getTime() <= stopTime) {
-            Event next = (Event)this.eventQueue.poll();
+        while(!this.eventQueue.isEmpty() && (this.eventQueue.peek()).getTime() <= stopTime) {
+            Event next = this.eventQueue.poll();
             this.removePendingEvent(next);
             this.currentTime = next.getTime();
             next.getAction().executeAction(this);

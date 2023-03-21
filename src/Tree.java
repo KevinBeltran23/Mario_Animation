@@ -18,7 +18,6 @@ public final class Tree extends Plant{
             return false;
         }
     }
-
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
         if (!this.transformHealthEntity(world, scheduler, imageStore, action)) {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());

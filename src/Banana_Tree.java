@@ -9,7 +9,14 @@ public class Banana_Tree extends Banana
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        return false;
+        if (this.getHealth() <= 0) {
+            Banana_Stump bananaStump = this.getPosition().createBananaStump(WorldModel.getStumpKey() + "_" + this.getId(), imageStore.getImageList(WorldModel.getBananaStumpKey()));
+            this.removeEntity(scheduler, world);
+            bananaStump.addEntity(world);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {

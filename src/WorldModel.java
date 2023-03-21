@@ -226,15 +226,6 @@ public final class WorldModel {
         }
     }
 
-    public void parseHouse(String[] properties, Point pt, String id, ImageStore imageStore) {
-        if (properties.length == 0) {
-            Entity entity = pt.createHouse(id, imageStore.getImageList("house"));
-            entity.tryAddEntity(this);
-        } else {
-            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "house", 0));
-        }
-    }
-
     public void parseSaveFile(Scanner saveFile, ImageStore imageStore, Background defaultBackground) {
         String lastHeader = "";
         int headerLine = 0;
@@ -328,6 +319,16 @@ public final class WorldModel {
             for(int col = 0; col < rows; ++col) {
                 this.background[row][col] = new Background(cells[col], imageStore.getImageList(cells[col]));
             }
+        }
+
+    }
+
+    public void parseHouse(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == 0) {
+            Entity entity = pt.createHouse(id, imageStore.getImageList("house"));
+            entity.tryAddEntity(this);
+        } else {
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "house", 0));
         }
     }
 
