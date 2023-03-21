@@ -74,8 +74,14 @@ public final class VirtualWorld extends PApplet {
             if (entity instanceof Sapling sapling) {
                 var10000.println(var10001 + ": " + "Sapling : " + sapling.getHealth());
             }
+            if (entity instanceof Banana_Sapling bananaSapling) {
+                var10000.println(var10001 + ": " + "Banana Sapling : " + bananaSapling.getHealth());
+            }
             else if (entity instanceof Tree tree) {
                 var10000.println(var10001 + ": " + "Tree : " + tree.getHealth());
+            }
+            else if (entity instanceof Banana_Tree bananaTree) {
+                var10000.println(var10001 + ": " + "Banana Tree : " + bananaTree.getHealth());
             }
             else if (entity instanceof Fairy) {
                 var10000.println(var10001 + ": " + "Fairy");
@@ -88,6 +94,9 @@ public final class VirtualWorld extends PApplet {
             }
             else if (entity instanceof Stump) {
                 var10000.println(var10001 + ": " + "Stump");
+            }
+            else if (entity instanceof Banana_Stump) {
+                var10000.println(var10001 + ": " + "Banana Stump");
             }
             else if (entity instanceof House) {
                 var10000.println(var10001 + ": " + "House");

@@ -2,9 +2,9 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Banana_2 extends Banana
+public class Banana_Sapling extends Banana
 {
-    public Banana_2(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health, int healthLimit) {
+    public Banana_Sapling(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int health, int healthLimit) {
         super(id, position, images, actionPeriod, animationPeriod, health, healthLimit);
     }
 

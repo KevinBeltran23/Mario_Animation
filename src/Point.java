@@ -37,10 +37,6 @@ public final class Point {
         return deltaX * deltaX + deltaY * deltaY;
     }
 
-    public House createHouse(String id, List<PImage> images) {
-        return new House(id, this, images, 0.0);
-    }
-
     public Optional<Entity> nearestEntity(List<Entity> entities) {
         if (entities.isEmpty()) {
             return Optional.empty();
@@ -62,8 +58,8 @@ public final class Point {
         }
     }
 
-    public Sapling createSapling(String id, List<PImage> images, int health) {
-        return new Sapling(id, this, images, 1.0, 1.0, 0, 5);
+    public House createHouse(String id, List<PImage> images) {
+        return new House(id, this, images, 0.0);
     }
 
     public Obstacle createObstacle(String id, double animationPeriod, List<PImage> images) {
@@ -74,8 +70,24 @@ public final class Point {
         return new Tree(id, this, images, actionPeriod, animationPeriod, health, 0);
     }
 
+    public Banana_Tree createBananaTree(String id, double actionPeriod, double animationPeriod, int health, List<PImage> images) {
+        return new Banana_Tree(id, this, images, actionPeriod, animationPeriod, health, 0);
+    }
+
+    public Sapling createSapling(String id, List<PImage> images, int health) {
+        return new Sapling(id, this, images, 1.0, 1.0, 0, 5);
+    }
+
+    public Banana_Sapling createBananaSapling(String id, List<PImage> images, int health) {
+        return new Banana_Sapling(id, this, images, 1.0, 1.0, 0, 5);
+    }
+
     public Stump createStump(String id, List<PImage> images) {
         return new Stump(id, this, images, 0.0);
+    }
+
+    public Banana_Stump createBananaStump(String id, List<PImage> images) {
+        return new Banana_Stump(id, this, images, 0.0);
     }
 
     public Dude_Full createDudeFull(String id, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
