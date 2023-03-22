@@ -21,11 +21,21 @@ public final class WorldModel {
     private Entity[][] occupancy;
     private Set<Entity> entities;
 
+    private int donkeyCount;
+
     public WorldModel() {
     }
 
     public int getNumRows() {
         return this.numRows;
+    }
+
+    public int getDonkeyCount(){
+        return this.donkeyCount;
+    }
+
+    public void adjustDonkeyCount(int num){
+        this.donkeyCount += num;
     }
 
     public int getNumCols() {
@@ -60,6 +70,8 @@ public final class WorldModel {
 
     public static String getFairyKey(){return "fairy";}
 
+    public static String getMarioKey(){return "mario";}
+
     public Optional<Entity> findNearest(Point pos, List<Class> entityKind) {
         List<Entity> ofType = new LinkedList();
 
@@ -79,6 +91,9 @@ public final class WorldModel {
                     ofType.add(entity);
                 }
                 if (entity instanceof Fairy && kind == Fairy.class) {
+                    ofType.add(entity);
+                }
+                if (entity instanceof Mario && kind == Mario.class) {
                     ofType.add(entity);
                 }
                 if (entity instanceof Donkey_Kong && kind == Donkey_Kong.class) {
@@ -228,6 +243,15 @@ public final class WorldModel {
         }
     }
 
+    public void parseMario(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == 3) {
+            Entity entity = pt.createMario(id, Double.parseDouble(properties[0]), Double.parseDouble(properties[1]), imageStore.getImageList("mario"));
+            entity.tryAddEntity(this);
+        } else {
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "mario", 3));
+        }
+    }
+
     public void parseDonkeyKong(String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == 3) {
             Entity entity = pt.createDudeNotFull(id, Double.parseDouble(properties[0]), Double.parseDouble(properties[1]), Integer.parseInt(properties[2]), imageStore.getImageList("donkeyKong"));
@@ -323,6 +347,9 @@ public final class WorldModel {
                     break;
                 case "fairy":
                     this.parseFairy(properties, pt, id, imageStore);
+                    break;
+                case "mario":
+                    this.parseMario(properties, pt, id, imageStore);
                     break;
                 case "house":
                     this.parseHouse(properties, pt, id, imageStore);

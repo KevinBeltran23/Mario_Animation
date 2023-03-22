@@ -11,7 +11,7 @@ public final class Fairy extends regularMovement {
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
-        Optional<Entity> fairyTarget = world.findNearest(this.getPosition(), new ArrayList(List.of(Stump.class)));
+        Optional<Entity> fairyTarget = world.findNearest(this.getPosition(), new ArrayList(List.of(Stump.class, Banana_Stump.class)));
         if (fairyTarget.isPresent()) {
             Point tgtPos = (fairyTarget.get()).getPosition();
             if (this.move(this, world, fairyTarget.get(), scheduler, action)) {

@@ -31,6 +31,9 @@ public class Activity implements Action
         else if(entity instanceof Fairy){
             ((Fairy)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }
+        else if(entity instanceof Mario){
+            ((Mario)entity).execute(this.world, this.imageStore, eventScheduler, this);
+        }
         else if(entity instanceof Dude_Not_Full){
             ((Dude_Not_Full)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }

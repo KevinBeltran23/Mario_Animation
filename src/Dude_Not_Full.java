@@ -1,9 +1,6 @@
 import processing.core.PImage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public final class Dude_Not_Full extends Dude {
 
@@ -13,7 +10,14 @@ public final class Dude_Not_Full extends Dude {
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
         Optional<Entity> target = world.findNearest(this.getPosition(), new ArrayList(Arrays.asList(Tree.class, Sapling.class)));
-        if (target.isEmpty() || !this.move(world, (Plant) target.get(), scheduler, action) || !this.transform(world, scheduler, imageStore)) {
+        if (Objects.equals(this.getId(), "marioTime")){
+            Mario mario = this.getPosition().createMario("mario", 1.0, 0.180, imageStore.getImageList("mario"));
+            scheduler.unscheduleAllEvents(this);
+            this.removeEntity(scheduler, world);
+            mario.addEntity(world);
+            mario.scheduleActions(world, imageStore, scheduler);
+        }
+        else if (target.isEmpty() || !this.move(world, (Plant) target.get(), scheduler, action) || !this.transform(world, scheduler, imageStore)) {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());
         }
     }
