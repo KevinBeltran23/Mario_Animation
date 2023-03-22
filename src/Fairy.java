@@ -34,7 +34,6 @@ public final class Fairy extends Moved{
                 newPos = this.getPosition();
             }
         }
-
         return newPos;
     }
 

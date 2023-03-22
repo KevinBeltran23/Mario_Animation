@@ -21,7 +21,7 @@ public final class Dude_Not_Full extends Dude {
     public boolean moveToNotFull(WorldModel world, Plant target, EventScheduler scheduler, Action action) {
         if (this.getPosition().adjacent(target.getPosition())) {
             this.setResourceCount(1);
-            target.setHealth(-1);
+            target.adjustHealth(-1);
             return true;
         } else {
             Point nextPos = this.nextPosition(world, target.getPosition());
@@ -31,8 +31,6 @@ public final class Dude_Not_Full extends Dude {
             return false;
         }
     }
-
-
 
     public boolean transformNotFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         if (this.getResourceCount() >= this.getResourceLimit()) {

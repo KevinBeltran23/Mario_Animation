@@ -5,11 +5,8 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -66,10 +63,9 @@ public final class VirtualWorld extends PApplet {
     public void mousePressed(){
         Point pressed = this.mouseToPoint();
         System.out.println("Monkey Time! " + pressed.x + ", " + pressed.y);
-        for (Entity entity : world.getEntities()){
+        for (Entity entity : this.world.getEntities()){
             if (entity.getPosition().nearby(pressed) && entity instanceof Tree){
-                System.out.println("banana");
-                ((Tree) entity).transformToBanana(world, this.scheduler, this.imageStore);
+                ((Tree) entity).adjustHealth(-10);
             }
         }
     }

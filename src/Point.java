@@ -67,7 +67,7 @@ public final class Point {
     }
 
     public Tree createTree(String id, double actionPeriod, double animationPeriod, int health, List<PImage> images) {
-        return new Tree(id, this, images, actionPeriod, animationPeriod, health, 0);
+        return new Tree(id, this, images, actionPeriod, animationPeriod, health, -1);
     }
 
     public Banana_Tree createBananaTree(String id, double actionPeriod, double animationPeriod, int health, List<PImage> images) {

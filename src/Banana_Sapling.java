@@ -28,7 +28,7 @@ public class Banana_Sapling extends Banana
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
-        this.setHealth(1);
+        this.adjustHealth(1);
         if (!this.transformHealthEntity(world, scheduler, imageStore, action)) {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());
         }

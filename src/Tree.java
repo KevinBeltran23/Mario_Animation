@@ -9,21 +9,30 @@ public final class Tree extends Plant{
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        if (this.getHealth() <= 0) {
+        if (this.getHealth() == 0) {
             Stump stump = this.getPosition().createStump(WorldModel.getStumpKey() + "_" + this.getId(), imageStore.getImageList(WorldModel.getStumpKey()));
             this.removeEntity(scheduler, world);
             stump.addEntity(world);
             return true;
-        } else {
+        } else if (this.getHealth() < 0){
+            Banana_Tree bananaTree = this.getPosition().createBananaTree(WorldModel.getBananaTreeKey() + "_" + this.getId(), Point.getNumFromRange(1.4, 1.0), Point.getNumFromRange(0.6, 0.05), Point.getIntFromRange(3, 1), imageStore.getImageList(WorldModel.getBananaTreeKey()));
+            scheduler.unscheduleAllEvents(this);
+            this.removeEntity(scheduler, world);
+            bananaTree.addEntity(world);
+            bananaTree.scheduleActions(world, imageStore, scheduler);
+            return true;
+        }
+        else{
             return false;
         }
     }
 
     public void transformToBanana(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
         Banana_Tree bananaTree = this.getPosition().createBananaTree(WorldModel.getBananaTreeKey() + "_" + this.getId(), Point.getNumFromRange(1.4, 1.0), Point.getNumFromRange(0.6, 0.05), Point.getIntFromRange(3, 1), imageStore.getImageList(WorldModel.getBananaTreeKey()));
-        this.removeEntity(scheduler, world);
-        bananaTree.addEntity(world);
-        bananaTree.scheduleActions(world, imageStore, scheduler);
+        //scheduler.unscheduleAllEvents(this);
+        //this.removeEntity(scheduler, world);
+        //bananaTree.addEntity(world);
+        //scheduleActions(world, imageStore, scheduler)
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
