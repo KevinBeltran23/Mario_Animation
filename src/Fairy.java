@@ -10,7 +10,7 @@ public final class Fairy extends Moved{
         super(id, position, images, actionPeriod, animationPeriod);
     }
 
-    public boolean moveToFairy(Fairy fairy, WorldModel world, Entity target, EventScheduler scheduler, Action action) {
+    public boolean move(Fairy fairy, WorldModel world, Entity target, EventScheduler scheduler, Action action) {
         if (fairy.getPosition().adjacent(target.getPosition())) {
             target.removeEntity(scheduler, world);
             return true;
@@ -41,7 +41,7 @@ public final class Fairy extends Moved{
         Optional<Entity> fairyTarget = world.findNearest(this.getPosition(), new ArrayList(List.of(Stump.class)));
         if (fairyTarget.isPresent()) {
             Point tgtPos = (fairyTarget.get()).getPosition();
-            if (this.moveToFairy(this, world, fairyTarget.get(), scheduler, action)) {
+            if (this.move(this, world, fairyTarget.get(), scheduler, action)) {
                 Plant sapling = tgtPos.createSapling(WorldModel.getSaplingKey() + "_" + (fairyTarget.get()).getId(), imageStore.getImageList(WorldModel.getSaplingKey()), 0);
                 sapling.addEntity(world);
                 sapling.scheduleActions(world, imageStore, scheduler);
