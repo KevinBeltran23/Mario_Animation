@@ -18,6 +18,8 @@ public class Donkey_Kong extends NonResourceMoved
                 Banana_Stump stump = tgtPos.createBananaStump(WorldModel.getBananaStumpKey(), imageStore.getImageList(WorldModel.getBananaStumpKey()));
                 stump.addEntity(world);
 
+                this.removeEntity(scheduler, world);
+                scheduler.unscheduleAllEvents(this);
                 //Donkey_Kong donkeyKong = this.getPosition().createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
                 //donkeyKong.addEntity(world);
                 //donkeyKong.scheduleActions(world, imageStore, scheduler);
