@@ -6,8 +6,35 @@ import java.util.Optional;
 
 public class Donkey_Kong extends NonResourceMoved
 {
-    public Donkey_Kong(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
+    private int resourceCount;
+    private int resourceLimit;
+    public Donkey_Kong(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod, int resourceCount, int resourceLimit) {
         super(id, position, images, actionPeriod, animationPeriod);
+        this.resourceCount = resourceCount;
+        this.resourceLimit = resourceLimit;
+    }
+
+    public int getResourceLimit(){
+        return this.resourceLimit;
+    }
+
+    public int getResourceCount(){
+        return this.resourceCount;
+    }
+
+    public boolean move(NonResourceMoved entity, WorldModel world, Entity target, EventScheduler scheduler, Action action) {
+        if (entity.getPosition().adjacent(target.getPosition())) {
+            this.resourceCount += 1;
+            target.removeEntity(scheduler, world);
+            return true;
+        } else {
+            // maybe get the list of valid neighbors are try going through each one
+            Point nextPos = entity.nextPosition(world, target.getPosition());
+            if (!entity.getPosition().equals(nextPos)) {
+                entity.moveEntity(world, scheduler, nextPos);
+            }
+            return false;
+        }
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler, Action action) {
@@ -18,11 +45,12 @@ public class Donkey_Kong extends NonResourceMoved
                 Banana_Stump stump = tgtPos.createBananaStump(WorldModel.getBananaStumpKey(), imageStore.getImageList(WorldModel.getBananaStumpKey()));
                 stump.addEntity(world);
 
-                this.removeEntity(scheduler, world);
-                scheduler.unscheduleAllEvents(this);
-                //Donkey_Kong donkeyKong = this.getPosition().createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
-                //donkeyKong.addEntity(world);
-                //donkeyKong.scheduleActions(world, imageStore, scheduler);
+                if (this.getResourceCount() >= this.getResourceLimit()){
+                    Donkey_Kong_Sleeping donkeyKongSleeping = this.getPosition().createDonkeyKongSleeping("donkeyKongSleeping", imageStore.getImageList("donkeyKongSleeping"));
+                    this.removeEntity(scheduler, world);
+                    scheduler.unscheduleAllEvents(this);
+                    donkeyKongSleeping.addEntity(world);
+                }
             }
         }
         scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());

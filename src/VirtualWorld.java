@@ -63,9 +63,13 @@ public final class VirtualWorld extends PApplet {
     public void mousePressed(){
         Point pressed = this.mouseToPoint();
         System.out.println("Monkey Time! " + pressed.x + ", " + pressed.y);
+        Entity occupied = null;
         for (Entity entity : this.world.getEntities()){
             if (entity.getPosition().nearby(pressed) && entity instanceof Tree){
                 (entity).setID("bananaTime");
+            }
+            if(entity.getPosition().equals(pressed)){
+                occupied = entity;
             }
         }
         List<Point> points = pressed.getNearby(this.view);
@@ -74,16 +78,12 @@ public final class VirtualWorld extends PApplet {
             this.world.setBackgroundCell(point, new Background("wood", imageStore.getImageList("wood")));
         }
 
-        if (!world.isOccupied(pressed)){
-            //Plant sapling = pressed.createSapling(WorldModel.getSaplingKey(), imageStore.getImageList(WorldModel.getSaplingKey()), 0);
-            //sapling.addEntity(world);
-            //sapling.scheduleActions(world, imageStore, scheduler);
-            Donkey_Kong donkeyKong = pressed.createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
-            donkeyKong.addEntity(world);
-            donkeyKong.scheduleActions(world, imageStore, scheduler);
-
-
+        if (occupied != null) {
+            occupied.removeEntity(this.scheduler, this.world);
         }
+        Donkey_Kong donkeyKong = pressed.createDonkeyKong("donkeyKong", 1.0, 0.180, 4, imageStore.getImageList("donkeyKong"));
+        donkeyKong.addEntity(this.world);
+        donkeyKong.scheduleActions(this.world, this.imageStore, this.scheduler);
     }
 
     /*

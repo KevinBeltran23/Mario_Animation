@@ -56,6 +56,8 @@ public final class WorldModel {
 
     public static String getDonkeyKongKey(){return "donkeyKong";}
 
+    public static String getDonkeyKongSleepingKey(){return "donkeyKongSleeping";}
+
     public static String getFairyKey(){return "fairy";}
 
     public Optional<Entity> findNearest(Point pos, List<Class> entityKind) {
@@ -73,10 +75,16 @@ public final class WorldModel {
                 if (entity instanceof Tree && kind == Tree.class) {
                     ofType.add(entity);
                 }
-                if (entity instanceof Banana_Tree && kind == Banana_Sapling.class) {
+                if (entity instanceof Banana_Tree && kind == Banana_Tree.class) {
                     ofType.add(entity);
                 }
                 if (entity instanceof Fairy && kind == Fairy.class) {
+                    ofType.add(entity);
+                }
+                if (entity instanceof Donkey_Kong && kind == Donkey_Kong.class) {
+                    ofType.add(entity);
+                }
+                if (entity instanceof Donkey_Kong_Sleeping && kind == Donkey_Kong_Sleeping.class) {
                     ofType.add(entity);
                 }
                 if (entity instanceof Dude_Not_Full && kind == Dude_Not_Full.class) {
@@ -154,6 +162,15 @@ public final class WorldModel {
             entity.tryAddEntity(this);
         } else {
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "stump", 0));
+        }
+    }
+
+    public void parseDonkeyKongSleeping(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == 0) {
+            Entity entity = pt.createDonkeyKongSleeping(id, imageStore.getImageList("donkeyKongSleeping"));
+            entity.tryAddEntity(this);
+        } else {
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "donkeyKongSleeping", 0));
         }
     }
 
@@ -324,6 +341,9 @@ public final class WorldModel {
                     break;
                 case "stump":
                     this.parseStump(properties, pt, id, imageStore);
+                    break;
+                case "donkeyKongSleeping":
+                    this.parseDonkeyKongSleeping(properties, pt, id, imageStore);
                     break;
                 case "bananaStump":
                     this.parseBananaStump(properties, pt, id, imageStore);

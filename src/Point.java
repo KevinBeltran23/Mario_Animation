@@ -58,7 +58,7 @@ public final class Point {
         }
     }
     public Donkey_Kong createDonkeyKong(String id, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
-        return new Donkey_Kong(id, this, images, actionPeriod, animationPeriod);
+        return new Donkey_Kong(id, this, images, actionPeriod, animationPeriod, 0, 3);
     }
 
     public House createHouse(String id, List<PImage> images) {
@@ -89,6 +89,10 @@ public final class Point {
         return new Stump(id, this, images, 0.0);
     }
 
+    public Donkey_Kong_Sleeping createDonkeyKongSleeping(String id, List<PImage> images) {
+        return new Donkey_Kong_Sleeping(id, this, images, 0.0);
+    }
+
     public Banana_Stump createBananaStump(String id, List<PImage> images) {
         return new Banana_Stump(id, this, images, 0.0);
     }
@@ -110,7 +114,7 @@ public final class Point {
     }
 
     public boolean nearby(Point p){
-        return (Math.abs(this.x - p.x) + Math.abs(this.y - p.y)) <= 2 ;
+        return (Math.abs(this.x - p.x) + Math.abs(this.y - p.y)) <= 3 ;
     }
 
     public List<Point> getNearby(WorldView worldView){

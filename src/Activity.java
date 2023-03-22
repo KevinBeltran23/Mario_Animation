@@ -43,6 +43,9 @@ public class Activity implements Action
         else if(entity instanceof Stump){
             throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Stump.class));
         }
+        else if(entity instanceof Donkey_Kong_Sleeping){
+            throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Donkey_Kong_Sleeping.class));
+        }
         else if(entity instanceof Banana_Stump){
             throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Banana_Stump.class));
         }
