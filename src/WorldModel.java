@@ -54,6 +54,8 @@ public final class WorldModel {
 
     public static String getBananaStumpKey(){return "bananaStump";}
 
+    public static String getDonkeyKongKey(){return "donkeyKong";}
+
     public Optional<Entity> findNearest(Point pos, List<Class> entityKind) {
         List<Entity> ofType = new LinkedList();
 
@@ -91,6 +93,9 @@ public final class WorldModel {
                     ofType.add(entity);
                 }
                 if (entity instanceof Obstacle && kind == Obstacle.class) {
+                    ofType.add(entity);
+                }
+                if (entity instanceof Donkey_Kong && kind == Donkey_Kong.class) {
                     ofType.add(entity);
                 }
             }
@@ -206,6 +211,15 @@ public final class WorldModel {
         }
     }
 
+    public void parseDonkeyKong(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == 3) {
+            Entity entity = pt.createDonkeyKong(id, Double.parseDouble(properties[0]), Double.parseDouble(properties[1]), Integer.parseInt(properties[2]), imageStore.getImageList("donkeyKong"));
+            entity.tryAddEntity(this);
+        } else {
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "Donkey Kong", 3));
+        }
+    }
+
     public void parseSapling(String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == 1) {
             int health = Integer.parseInt(properties[0]);
@@ -223,6 +237,15 @@ public final class WorldModel {
             entity.tryAddEntity(this);
         } else {
             throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "bananaSapling", 1));
+        }
+    }
+
+    public void parseHouse(String[] properties, Point pt, String id, ImageStore imageStore) {
+        if (properties.length == 0) {
+            Entity entity = pt.createHouse(id, imageStore.getImageList("house"));
+            entity.tryAddEntity(this);
+        } else {
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "house", 0));
         }
     }
 
@@ -278,6 +301,9 @@ public final class WorldModel {
                 case "dude":
                     this.parseDude(properties, pt, id, imageStore);
                     break;
+                case "donkeyKong":
+                    this.parseDonkeyKong(properties, pt, id, imageStore);
+                    break;
                 case "fairy":
                     this.parseFairy(properties, pt, id, imageStore);
                     break;
@@ -321,15 +347,6 @@ public final class WorldModel {
             }
         }
 
-    }
-
-    public void parseHouse(String[] properties, Point pt, String id, ImageStore imageStore) {
-        if (properties.length == 0) {
-            Entity entity = pt.createHouse(id, imageStore.getImageList("house"));
-            entity.tryAddEntity(this);
-        } else {
-            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "house", 0));
-        }
     }
 
     public void removeEntityAt(Point point) {

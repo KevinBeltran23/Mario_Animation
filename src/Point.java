@@ -57,6 +57,9 @@ public final class Point {
             return Optional.of(nearest);
         }
     }
+    public Donkey_Kong createDonkeyKong(String id, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
+        return new Donkey_Kong(id, this, images, resourceLimit, 0, actionPeriod, animationPeriod);
+    }
 
     public House createHouse(String id, List<PImage> images) {
         return new House(id, this, images, 0.0);
