@@ -15,8 +15,12 @@ public class Donkey_Kong extends NonResourceMoved
         if (fairyTarget.isPresent()) {
             Point tgtPos = (fairyTarget.get()).getPosition();
             if (this.move(this, world, fairyTarget.get(), scheduler, action)) {
-                Banana_Stump sapling = tgtPos.createBananaStump(WorldModel.getBananaStumpKey(), imageStore.getImageList(WorldModel.getBananaStumpKey()));
-                sapling.addEntity(world);
+                Banana_Stump stump = tgtPos.createBananaStump(WorldModel.getBananaStumpKey(), imageStore.getImageList(WorldModel.getBananaStumpKey()));
+                stump.addEntity(world);
+
+                //Donkey_Kong donkeyKong = this.getPosition().createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
+                //donkeyKong.addEntity(world);
+                //donkeyKong.scheduleActions(world, imageStore, scheduler);
             }
         }
         scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());
