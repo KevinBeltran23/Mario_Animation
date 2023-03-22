@@ -1,6 +1,7 @@
 import processing.core.PImage;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class Tree extends Plant{
 
@@ -14,7 +15,7 @@ public final class Tree extends Plant{
             this.removeEntity(scheduler, world);
             stump.addEntity(world);
             return true;
-        } else if (this.getHealth() == 10){
+        } else if (Objects.equals(this.getId(), "bananaTime")){
             Banana_Tree bananaTree = this.getPosition().createBananaTree(WorldModel.getBananaTreeKey() + "_" + this.getId(), Point.getNumFromRange(1.4, 1.0), Point.getNumFromRange(0.6, 0.05), Point.getIntFromRange(3, 1), imageStore.getImageList(WorldModel.getBananaTreeKey()));
             scheduler.unscheduleAllEvents(this);
             this.removeEntity(scheduler, world);

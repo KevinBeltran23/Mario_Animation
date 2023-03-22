@@ -65,7 +65,7 @@ public final class VirtualWorld extends PApplet {
         System.out.println("Monkey Time! " + pressed.x + ", " + pressed.y);
         for (Entity entity : this.world.getEntities()){
             if (entity.getPosition().nearby(pressed) && entity instanceof Tree){
-                ((Tree) entity).setHealth(10);
+                (entity).setID("bananaTime");
             }
         }
         List<Point> points = pressed.getNearby(this.view);

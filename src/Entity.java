@@ -13,7 +13,7 @@ public abstract class Entity {
     private final List<PImage> images;
     private int imageIndex;
     private final double actionPeriod;
-    private final String id;
+    private String id;
 
     public Entity(String id, Point position, List<PImage> images, double actionPeriod) {
         this.position = position;
@@ -70,6 +70,10 @@ public abstract class Entity {
 
     public String getId(){
         return this.id;
+    }
+
+    public void setID(String id){
+        this.id = id;
     }
 
     public Point getPosition(){

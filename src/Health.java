@@ -28,7 +28,7 @@ public abstract class Health extends Actioned
         return this.healthLimit;
     }
 
-    public void setHealthLimit(int num){this.healthLimit += num;}
+    public void setHealthLimit(int num){this.healthLimit = num;}
 
     public boolean transformHealthEntity(WorldModel world, EventScheduler scheduler, ImageStore imageStore, Action action) {
         return this.transform(world, scheduler, imageStore);
