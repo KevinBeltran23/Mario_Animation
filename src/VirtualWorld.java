@@ -53,10 +53,6 @@ public final class VirtualWorld extends PApplet {
         this.scheduleActions(this.world, this.scheduler, this.imageStore);
     }
 
-    public WorldView getView(){
-        return this.view;
-    }
-
     public void draw() {
         double appTime = (double)(System.currentTimeMillis() - this.startTimeMillis) * 0.001;
         double frameTime = (appTime - this.scheduler.getCurrentTime()) / this.timeScale;
@@ -69,16 +65,13 @@ public final class VirtualWorld extends PApplet {
         System.out.println("Monkey Time! " + pressed.x + ", " + pressed.y);
         for (Entity entity : this.world.getEntities()){
             if (entity.getPosition().nearby(pressed) && entity instanceof Tree){
-                ((Tree) entity).adjustHealth(-10);
+                ((Tree) entity).setHealth(10);
             }
         }
         List<Point> points = pressed.getNearby(this.view);
         System.out.println(points.size());
         for (Point point : points){
-            if(!this.world.isOccupied(point)){
-                Stump stump = point.createStump(WorldModel.getStumpKey(), imageStore.getImageList(WorldModel.getStumpKey()));
-                stump.addEntity(world);
-            }
+            this.world.setBackgroundCell(point, new Background("wood", imageStore.getImageList("wood")));
         }
     }
 

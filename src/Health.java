@@ -22,6 +22,8 @@ public abstract class Health extends Actioned
         this.health += num;
     }
 
+    public void setHealth(int num){this.health = num;}
+
     public int getHealthLimit(){
         return this.healthLimit;
     }
