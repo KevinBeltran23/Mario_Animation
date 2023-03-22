@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class Donkey_Kong extends NonResourceMoved
 {
-
     public Donkey_Kong(String id, Point position, List<PImage> images, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
