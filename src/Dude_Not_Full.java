@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public final class Dude_Not_Full extends Dude {
+public final class Dude_Not_Full extends ResourceMoved {
 
     public Dude_Not_Full(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);

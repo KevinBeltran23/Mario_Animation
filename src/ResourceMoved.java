@@ -2,13 +2,13 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public abstract class Dude extends Moved
+public abstract class ResourceMoved extends Moved
 {
     private final int resourceLimit;
     private int resourceCount;
 
 
-    public Dude(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
+    public ResourceMoved(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, double actionPeriod, double animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
         this.resourceCount = resourceCount;
@@ -24,7 +24,6 @@ public abstract class Dude extends Moved
                 newPos = this.getPosition();
             }
         }
-
         return newPos;
     }
 
