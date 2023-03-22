@@ -58,7 +58,7 @@ public final class Point {
         }
     }
     public Donkey_Kong createDonkeyKong(String id, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
-        return new Donkey_Kong(id, this, images, resourceLimit, 0, actionPeriod, animationPeriod);
+        return new Donkey_Kong(id, this, images, actionPeriod, animationPeriod);
     }
 
     public House createHouse(String id, List<PImage> images) {

@@ -75,12 +75,14 @@ public final class VirtualWorld extends PApplet {
         }
 
         if (!world.isOccupied(pressed)){
-            //Donkey_Kong dk = pressed.createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
-            //dk.addEntity(world);
-            //dk.scheduleActions(world, imageStore, scheduler);
-            Plant sapling = pressed.createSapling(WorldModel.getSaplingKey(), 0.720, 0.180, 4, imageStore.getImageList("donkeyKong");
+            //Plant sapling = pressed.createSapling(WorldModel.getSaplingKey(), imageStore.getImageList(WorldModel.getSaplingKey()), 0);
+            //sapling.addEntity(world);
+            //sapling.scheduleActions(world, imageStore, scheduler);
+            Donkey_Kong sapling = pressed.createDonkeyKong("donkeyKong", 0.720, 0.180, 4, imageStore.getImageList("donkeyKong"));
             sapling.addEntity(world);
             sapling.scheduleActions(world, imageStore, scheduler);
+
+
         }
     }
 

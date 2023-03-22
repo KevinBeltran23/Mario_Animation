@@ -34,11 +34,11 @@ public class Activity implements Action
         else if(entity instanceof Dude_Not_Full){
             ((Dude_Not_Full)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }
-        else if(entity instanceof Dude_Full){
-            ((Dude_Full)entity).execute(this.world, this.imageStore, eventScheduler, this);
-        }
         else if(entity instanceof Donkey_Kong){
             ((Donkey_Kong)entity).execute(this.world, this.imageStore, eventScheduler, this);
+        }
+        else if(entity instanceof Dude_Full){
+            ((Dude_Full)entity).execute(this.world, this.imageStore, eventScheduler, this);
         }
         else if(entity instanceof Stump){
             throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", Stump.class));

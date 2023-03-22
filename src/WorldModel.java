@@ -56,6 +56,8 @@ public final class WorldModel {
 
     public static String getDonkeyKongKey(){return "donkeyKong";}
 
+    public static String getFairyKey(){return "fairy";}
+
     public Optional<Entity> findNearest(Point pos, List<Class> entityKind) {
         List<Entity> ofType = new LinkedList();
 
@@ -95,9 +97,7 @@ public final class WorldModel {
                 if (entity instanceof Obstacle && kind == Obstacle.class) {
                     ofType.add(entity);
                 }
-                if (entity instanceof Donkey_Kong && kind == Donkey_Kong.class) {
-                    ofType.add(entity);
-                }
+
             }
         }
 
@@ -213,10 +213,10 @@ public final class WorldModel {
 
     public void parseDonkeyKong(String[] properties, Point pt, String id, ImageStore imageStore) {
         if (properties.length == 3) {
-            Entity entity = pt.createDonkeyKong(id, Double.parseDouble(properties[0]), Double.parseDouble(properties[1]), Integer.parseInt(properties[2]), imageStore.getImageList("donkeyKong"));
+            Entity entity = pt.createDudeNotFull(id, Double.parseDouble(properties[0]), Double.parseDouble(properties[1]), Integer.parseInt(properties[2]), imageStore.getImageList("donkeyKong"));
             entity.tryAddEntity(this);
         } else {
-            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "Donkey Kong", 3));
+            throw new IllegalArgumentException(String.format("%s requires %d properties when parsing", "dude", 3));
         }
     }
 

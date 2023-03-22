@@ -31,8 +31,6 @@ public final class Dude_Full extends Dude{
         }
     }
 
-
-
     public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
         Dude_Not_Full dude = this.getPosition().createDudeNotFull(this.getId(), this.getActionPeriod(), this.getAnimationPeriod(), this.getResourceLimit(), this.getImages());
         this.removeEntity(scheduler, world);
