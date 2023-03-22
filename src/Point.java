@@ -110,6 +110,19 @@ public final class Point {
         return (Math.abs(this.x - p.x) + Math.abs(this.y - p.y)) <= 2 ;
     }
 
+    public List<Point> getNearby(WorldView worldView){
+        List<Point> points = new ArrayList<>();
+        for(int row = 0; row < worldView.getViewport().getNumRows(); ++row) {
+            for(int col = 0; col < worldView.getViewport().getNumCols(); ++col) {
+                Point worldPoint = worldView.getViewport().viewportToWorld(col, row);
+                if (worldPoint.nearby(this)){
+                    points.add(worldPoint);
+                }
+            }
+        }
+        return points;
+    }
+
     public String toString() {
         return "(" + this.x + "," + this.y + ")";
     }
