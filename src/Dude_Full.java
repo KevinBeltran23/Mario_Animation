@@ -17,7 +17,6 @@ public final class Dude_Full extends Dude{
         } else {
             scheduler.scheduleEvent(this, this.createActivityAction(world, imageStore), this.getActionPeriod());
         }
-
     }
 
     public boolean moveToFull(WorldModel world, Entity target, EventScheduler scheduler, Action action) {
@@ -28,7 +27,6 @@ public final class Dude_Full extends Dude{
             if (!this.getPosition().equals(nextPos)) {
                 this.moveEntity(world, scheduler, nextPos);
             }
-
             return false;
         }
     }

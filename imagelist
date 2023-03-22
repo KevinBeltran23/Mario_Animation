@@ -1,4 +1,10 @@
 house images/house.bmp 255 255 255 0
+bananaSapling images/bananaSapling1.png
+bananaSapling images/bananaSapling2.png
+bananaSapling images/bananaSapling3.png
+bananaTree images/bananaTree1.png
+bananaTree images/bananaTree2.png
+bananaTree images/bananaTree3.png
 obstacle images/water0.png
 obstacle images/water1.png
 obstacle images/water2.png
