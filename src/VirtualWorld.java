@@ -76,7 +76,6 @@ public final class VirtualWorld extends PApplet {
         }
 
         List<Point> points = pressed.getNearby(this.view);
-        System.out.println(points.size());
         for (Point point : points){
             this.world.setBackgroundCell(point, new Background("wood", imageStore.getImageList("wood")));
         }
@@ -86,56 +85,7 @@ public final class VirtualWorld extends PApplet {
             donkeyKong.addEntity(this.world);
             donkeyKong.scheduleActions(this.world, this.imageStore, this.scheduler);
             }
-        }
-
-    /*
-
-    public void mousePressed() {
-        Point pressed = this.mouseToPoint();
-        System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
-        Optional<Entity> entityOptional = this.world.getOccupant(pressed);
-        if (entityOptional.isPresent()) {
-            Entity entity = entityOptional.get();
-            PrintStream var10000 = System.out;
-            String var10001 = entity.getId();
-            if (entity instanceof Sapling sapling) {
-                var10000.println(var10001 + ": " + "Sapling : " + sapling.getHealth());
-            }
-            if (entity instanceof Banana_Sapling bananaSapling) {
-                var10000.println(var10001 + ": " + "Banana Sapling : " + bananaSapling.getHealth());
-            }
-            else if (entity instanceof Tree tree) {
-                var10000.println(var10001 + ": " + "Tree : " + tree.getHealth());
-            }
-            else if (entity instanceof Banana_Tree bananaTree) {
-                var10000.println(var10001 + ": " + "Banana Tree : " + bananaTree.getHealth());
-            }
-            else if (entity instanceof Fairy) {
-                var10000.println(var10001 + ": " + "Fairy");
-            }
-            else if (entity instanceof Dude_Not_Full) {
-                var10000.println(var10001 + ": " + "Dude_Not_Full");
-            }
-            else if (entity instanceof Dude_Full) {
-                var10000.println(var10001 + ": " + "Dude_Full");
-            }
-            else if (entity instanceof Stump) {
-                var10000.println(var10001 + ": " + "Stump");
-            }
-            else if (entity instanceof Banana_Stump) {
-                var10000.println(var10001 + ": " + "Banana Stump");
-            }
-            else if (entity instanceof House) {
-                var10000.println(var10001 + ": " + "House");
-            }
-            else{
-                var10000.println(var10001 + ": " + "Obstacle");
-            }
-        }
-    }
-
-     */
-
+      }
 
     public void scheduleActions(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
 

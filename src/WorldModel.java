@@ -71,7 +71,6 @@ public final class WorldModel {
     public static String getFairyKey(){return "fairy";}
 
     public static String getMarioKey(){return "mario";}
-
     public Optional<Entity> findNearest(Point pos, List<Class> entityKind) {
         List<Entity> ofType = new LinkedList();
 
